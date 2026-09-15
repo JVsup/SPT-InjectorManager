@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>InjectorManager</AssemblyName>
+    <RootNamespace>InjectorManager</RootNamespace>
+    <Version>4.1.0</Version>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <Target Name="ValidateSptPath" BeforeTargets="ResolveReferences">
+    <Error Condition="'$(SptPath)' == ''" Text="Set SptPath in Directory.Build.props.user or pass -p:SptPath=..." />
+    <Error Condition="!Exists('$(SptPath)\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll')" Text="SptPath does not point to a readable SPT client installation." />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="Comfort" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\Comfort.dll" Private="false" />
+    <Reference Include="ItemComponent.Types" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\ItemComponent.Types.dll" Private="false" />
+    <Reference Include="Sirenix.Serialization" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\Sirenix.Serialization.dll" Private="false" />
+    <Reference Include="BepInEx" HintPath="$(SptPath)\BepInEx\core\BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(SptPath)\BepInEx\core\0Harmony.dll" Private="false" />
+    <Reference Include="spt-common" HintPath="$(SptPath)\BepInEx\plugins\spt\spt-common.dll" Private="false" />
+    <Reference Include="spt-reflection" HintPath="$(SptPath)\BepInEx\plugins\spt\spt-reflection.dll" Private="false" />
+    <Reference Include="UnityEngine" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.dll" Private="false" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="UnityEngine.IMGUIModule" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="UnityEngine.InputLegacyModule" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.InputLegacyModule.dll" Private="false" />
+    <Reference Include="UnityEngine.TextRenderingModule" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="UnityEngine.UI" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="UnityEngine.UIModule" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\UnityEngine.UIModule.dll" Private="false" />
+    <Reference Include="Unity.TextMeshPro" HintPath="$(SptPath)\EscapeFromTarkov_Data\Managed\Unity.TextMeshPro.dll" Private="false" />
+  </ItemGroup>
+</Project>
